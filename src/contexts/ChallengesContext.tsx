@@ -61,7 +61,7 @@ export function ChallengesProvider({ children }: ChallengeContextProps) {
                 resetChallenge
             }}
         >
-            {children};
+            {children}
         </ChallengesContext.Provider>
     )
 }

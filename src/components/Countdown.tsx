@@ -2,12 +2,15 @@ import { useState, useEffect, useContext } from 'react';
 import { ChallengesContext } from '../contexts/ChallengesContext';
 import styles from '../styles/components/Countdown.module.css'
 
+import { FcOk } from 'react-icons/fc';
+import { BsX, BsPlayFill } from "react-icons/bs";
+
 let countdownTimeout: NodeJS.Timeout;
 
 export function Countdown() {
     const { startNewChallenge } = useContext(ChallengesContext);
 
-    const [time, setTime] = useState(Math.floor(25 * 60));
+    const [time, setTime] = useState(Math.floor(0.1 * 60));
     const [isActive, setIsActive] = useState(false);
     const [hasFinished, setHasFinished] = useState(false);
 
@@ -24,7 +27,7 @@ export function Countdown() {
     function resetCountdown() {
         clearTimeout(countdownTimeout);
         setIsActive(false);
-        setTime(25 * 60);
+        setTime(0.1 * 60);
     }
 
     useEffect(() => {
@@ -60,6 +63,7 @@ export function Countdown() {
                     className={styles.countdownButton}
                 >
                     Ciclo encerrado
+                    <FcOk size={20} className={styles.icon} />
                 </button>
             ) : (
                 <>
@@ -70,6 +74,7 @@ export function Countdown() {
                             onClick={resetCountdown}
                         >
                             Abandonar ciclo
+                            <BsX size={20} className={styles.icon} />
                         </button>
                     ) : (
                         <button 
@@ -78,6 +83,7 @@ export function Countdown() {
                             onClick={startCountdown}
                         >
                             Iniciar um ciclo
+                            <BsPlayFill size={20} className={styles.icon} />
                         </button>
                     )}
                 </>
