@@ -85,4 +85,9 @@
 
 .icon {
     margin-left: 15px;
+    stroke-width: 1px;
+}
+
+.iconFc {
+    margin-left: 15px;
 }
