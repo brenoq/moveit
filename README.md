@@ -34,7 +34,7 @@ Esse projeto foi desenvolvido utilizando as seguintes tecnologias:
 - Clone esse repositório
 
 ```
-git clone https://github.com/RuthMaria/moveit.git
+git clone https://github.com/brenoq/moveit.git
 ```
 - Instale as dependências
 
@@ -73,7 +73,7 @@ Lembrando que você precisa ter uma conta no [Figma](http://figma.com/) para ace
 
 ## 📝 Licença
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 <br>
 <hr>
