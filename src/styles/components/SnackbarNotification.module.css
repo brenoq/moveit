@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    background-color: var(--text);
+    width: 18rem;
+
+    color: #fff;
+
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
+    top: 30px;
+    right: 30px;
+    position: fixed;
+
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+.container img {
+    height: 45px;
+    margin-right: 1.5rem;
+}
+
+.container p {
+    margin-top: 0.2rem;
+}
+
+  @keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+  }

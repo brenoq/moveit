@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
+import { SnackbarNotification } from '../components/SnackbarNotification';
 
 interface Challenge {
     type: 'body' | 'eye';
@@ -16,6 +17,7 @@ interface ChallengesContextData {
     experienceToNextLevel: number;
     challengesCompleted: number;
     activeChallenge: Challenge;
+    amount: number;
     levelUp: () => void;
     startNewChallenge: () => void;
     resetChallenge: () => void;
@@ -39,9 +41,11 @@ export function ChallengesProvider({
     const [level, setLevel] = useState(rest.level ?? 1);
     const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
     const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
+    const [amount, setAmount] = useState(0);
 
     const [activeChallenge, setActiveChallenge] = useState(null);
     const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
+    const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
     const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
@@ -69,13 +73,13 @@ export function ChallengesProvider({
         const challenge = challenges[randomChallengeIndex];
 
         setActiveChallenge(challenge);
+        setAmount(challenge.amount);
 
         new Audio('/notification.mp3').play();
 
         if (Notification.permission === 'granted') {
-            new Notification('Novo desafio 🎉', {
-                body: `Valendo ${challenge.amount}xp!`,
-            })
+            setIsNotificationOpen(true);
+            setTimeout(() => setIsNotificationOpen(false), 5000);
         }
     }
 
@@ -114,12 +118,14 @@ export function ChallengesProvider({
                 activeChallenge,
                 resetChallenge,
                 completeChallenge,
-                closeLevelUpModal
+                closeLevelUpModal,
+                amount
             }}
         >
             {children}
 
             {isLevelUpModalOpen && <LevelUpModal />}
+            {isNotificationOpen && <SnackbarNotification />}
         </ChallengesContext.Provider>
     )
 }
